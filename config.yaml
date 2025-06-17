@@ -1,0 +1,36 @@
+num_epochs: 300
+learning_rate: 0.0002
+batch_size: 18
+diffusion_steps: 1000
+num_furniture_classes: 33
+max_input_furniture_pieces: 23
+max_output_furniture_pieces: 23
+diffusion_semantic_kwargs:
+  att_1: 0.99999
+  att_T: 0.000009
+  ctt_1: 0.000009
+  ctt_T: 0.99999
+  model_output_type: 'x0'
+  mask_weight: 1
+  auxiliary_loss_weight: 0.0005
+  adaptive_auxiliary_loss: True
+diffusion_geometric_kwargs:
+  schedule_type: 'linear'
+  beta_start: 0.0001
+  beta_end: 0.02
+  loss_type: 'mse'
+  model_mean_type: 'eps'
+  model_var_type: 'fixedsmall'
+data_path:
+  train: /Volumes/UnionSine/ProcTHOR_final_processed/train/
+  val: /Volumes/UnionSine/ProcTHOR_final_processed/val/
+  test: /Volumes/UnionSine/ProcTHOR_final_processed/test/
+model:
+  name: MiDiffusion
+  hidden_size: 512
+  dropout: 0.1
+logger:
+  project_name: placer
+ray:
+  num_workers: 4
+  use_gpu: true
